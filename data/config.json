@@ -1,0 +1,10 @@
+{
+  "origins": ["YVR"],
+  "destinations": ["PUJ","SDQ","LRM","CUN","PVR","SJD","MEX","ZIH","HUX"],
+  "depart_date": "2025-03-17",
+  "return_date": "2025-03-25",
+  "party_size": 8,
+  "price_cap_per_person_cad": 550,
+  "no_us_segments": true,
+  "min_resort_stars": 4
+}
