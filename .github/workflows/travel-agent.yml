@@ -1,0 +1,16 @@
+name: Travel Agent
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour
+  workflow_dispatch:     # Allows you to run it manually
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run travel agent script
+        run: echo "Hello Jae 👋 — your Travel Agent is alive!"
