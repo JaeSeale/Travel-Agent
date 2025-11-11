@@ -13,7 +13,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: 3.11
+
+      - name: Debug: list repo files
+        run: |
+          echo "PWD:" && pwd
+          echo "Top-level:" && ls -la
+          echo "./src:" && ls -la src || true
+          echo "./data:" && ls -la data || true
+          echo "./.github/workflows:" && ls -la .github/workflows || true
 
       - name: Run travel agent script
         run: python src/travel_agent.py
