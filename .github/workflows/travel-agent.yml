@@ -2,8 +2,8 @@ name: Travel Agent
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Runs every hour
-  workflow_dispatch:     # Allows you to run it manually
+    - cron: "0 * * * *"  # hourly
+  workflow_dispatch:
 
 jobs:
   run-agent:
@@ -15,14 +15,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug: list repo files
+        run: |
+          echo "PWD:"
+          pwd
+          echo ""
+          echo "Top-level:"
+          ls -la
+          echo ""
+          echo "./src:"
+          ls -la src || true
+          echo ""
+          echo "./data:"
+          ls -la data || true
+          echo ""
+          echo "./.github/workflows:"
+          ls -la .github/workflows || true
+          echo ""
+          echo "Git info:"
+          git rev-parse --abbrev-ref HEAD
+          git log -1 --pretty=oneline
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Run travel agent script
-        run: |
-          python src/travel_agent.py
+        run: python src/travel_agent.py
 
       - name: Upload latest report as artifact
         uses: actions/upload-artifact@v4
@@ -30,4 +50,3 @@ jobs:
           name: travel-agent-report
           path: out/*.md
           if-no-files-found: warn
-
