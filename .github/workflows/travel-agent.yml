@@ -10,5 +10,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - run: echo "still good"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
+      - run: echo "python installed"
