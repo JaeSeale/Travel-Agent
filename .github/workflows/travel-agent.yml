@@ -8,9 +8,26 @@ on:
 jobs:
   run-agent:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - name: Run travel agent script
-        run: echo "Hello Jae 👋 — your Travel Agent is alive!"
+        run: |
+          python src/travel_agent.py
+
+      - name: Upload latest report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: travel-agent-report
+          path: out/*.md
+          if-no-files-found: warn
+
