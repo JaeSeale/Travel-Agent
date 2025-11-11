@@ -3,7 +3,7 @@ name: Travel Agent
 on:
   schedule:
     - cron: "0 * * * *"  # hourly
-  workflow_dispatch:     # manual run button
+  workflow_dispatch:      # shows the "Run workflow" button
 
 jobs:
   run-agent:
