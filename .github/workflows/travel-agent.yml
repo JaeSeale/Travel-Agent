@@ -3,7 +3,7 @@ name: Travel Agent
 on:
   schedule:
     - cron: "0 * * * *"  # hourly
-  workflow_dispatch:
+  workflow_dispatch:     # manual run button
 
 jobs:
   run-agent:
@@ -17,24 +17,12 @@ jobs:
 
       - name: Debug: list repo files
         run: |
-          echo "PWD:"
-          pwd
-          echo ""
-          echo "Top-level:"
-          ls -la
-          echo ""
-          echo "./src:"
-          ls -la src || true
-          echo ""
-          echo "./data:"
-          ls -la data || true
-          echo ""
-          echo "./.github/workflows:"
-          ls -la .github/workflows || true
-          echo ""
-          echo "Git info:"
-          git rev-parse --abbrev-ref HEAD
-          git log -1 --pretty=oneline
+          echo "PWD:" && pwd
+          echo "Top-level:" && ls -la
+          echo "./src:" && ls -la src || true
+          echo "./data:" && ls -la data || true
+          echo "./.github/workflows:" && ls -la .github/workflows || true
+          echo "Git info:" && git rev-parse --abbrev-ref HEAD && git log -1 --pretty=oneline
 
       - name: Set up Python
         uses: actions/setup-python@v5
