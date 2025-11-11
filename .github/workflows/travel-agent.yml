@@ -15,4 +15,5 @@ jobs:
         with:
           python-version: "3.11"
 
-      - run: echo "python installed"
+      - name: Run travel agent script
+        run: python src/travel_agent.py
